@@ -12,7 +12,7 @@ jobs:
       - name: install
         run: |
           brew install docker
-          colima start
+          brew install colima
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
 
