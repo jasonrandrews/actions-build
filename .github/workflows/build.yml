@@ -4,15 +4,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: macos-14
-
+  docker:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: install
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PAT }}
+      - name: Set up and build
         run: |
-          brew install docker
-          brew install colima
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+            docker buildx create --use --driver cloud ${{ secrets.DOCKER_USER }}/cloud-builder1
+            docker buildx build --platform linux/arm64,linux/arm/v7 --builder cloud-0xtest-${{ secrets.DOCKER_USER }}-builder1 --tag ${{ secrets.DOCKER_USER }}/cloud-build-test --push .
 
