@@ -25,6 +25,6 @@ jobs:
         run: |
             docker buildx use --builder "cloud-$USER/cloud-builder1"
             docker buildx build --platform linux/arm64,linux/arm/v7 --builder "cloud-$USER-cloud-builder1" --tag "$USER/cloud-build-test" --push .
-       end:
+        env:
            USER: ${{ secrets.DOCKER_USER }}
 
