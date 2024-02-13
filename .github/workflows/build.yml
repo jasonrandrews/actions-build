@@ -23,6 +23,6 @@ jobs:
           install: true
       - name: Set up and build
         run: |
-            docker buildx create --use --driver cloud ${{ secrets.DOCKER_USER }}/cloud-builder1
+            docker buildx use --builder ${{ secrets.DOCKER_USER }}/cloud-builder1
             docker buildx build --platform linux/arm64,linux/arm/v7 --builder cloud-0xtest-${{ secrets.DOCKER_USER }}-builder1 --tag ${{ secrets.DOCKER_USER }}/cloud-build-test --push .
 
