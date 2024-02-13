@@ -21,11 +21,12 @@ jobs:
           driver: cloud
           endpoint: "${{ secrets.DOCKER_USER }}/cloud-builder1"
           install: true
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-      - name: Set up and build
-        run: |
-            docker buildx build --platform linux/arm64 --tag $USER/cloud-build-test --push .
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/arm64
+          tags: "$USER/cloud-build-test"
         env:
            USER: ${{ secrets.DOCKER_USER }}
 
