@@ -22,11 +22,8 @@ jobs:
           endpoint: "${{ secrets.DOCKER_USER }}/cloud-builder1"
           install: true
       - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          platforms: linux/arm64
-          tags: 0xtest/cloud-build-test
+        run: |
+            docker buildx build --platform linux/arm64 --tag $USER/cloud-build-test --push .
         env:
            USER: ${{ secrets.DOCKER_USER }}
 
