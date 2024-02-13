@@ -25,8 +25,7 @@ jobs:
         uses: mxschmitt/action-tmate@v3
       - name: Set up and build
         run: |
-            docker buildx use --builder "cloud-$USER/cloud-builder1"
-            docker buildx build --platform linux/arm64,linux/arm/v7 --builder "cloud-$USER-cloud-builder1" --tag "$USER/cloud-build-test" --push .
+            docker buildx build --platform linux/arm64 --tag $USER/cloud-build-test --push .
         env:
            USER: ${{ secrets.DOCKER_USER }}
 
