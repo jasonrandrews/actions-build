@@ -21,6 +21,8 @@ jobs:
           driver: cloud
           endpoint: "${{ secrets.DOCKER_USER }}/cloud-builder1"
           install: true
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: Set up and build
         run: |
             docker buildx use --builder "cloud-$USER/cloud-builder1"
