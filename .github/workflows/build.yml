@@ -19,7 +19,7 @@ jobs:
         with:
           version: "lab:latest"
           driver: cloud
-          endpoint: "${{ secrets.DOCKER_USER }}/arm-cloud-builder1"
+          endpoint: "${{ secrets.DOCKER_ORG }}/arm-cloud-builder1"
           install: true
       - name: Build and push
         run: |
