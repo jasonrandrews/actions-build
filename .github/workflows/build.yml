@@ -19,11 +19,11 @@ jobs:
         with:
           version: "lab:latest"
           driver: cloud
-          endpoint: "${{ secrets.DOCKER_USER }}/cloud-builder1"
+          endpoint: "${{ secrets.DOCKER_USER }}/arm-cloud-builder1"
           install: true
       - name: Build and push
         run: |
-            docker buildx build --platform linux/arm64 --tag $USER/cloud-build-test --push .
+            docker buildx build --platform linux/arm64,linux/amd64 --tag $USER/cloud-build-test --push .
         env:
            USER: ${{ secrets.DOCKER_USER }}
 
