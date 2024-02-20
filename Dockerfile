@@ -1,2 +1,2 @@
 FROM ubuntu:latest
-CMD echo -n "Architecture is " && uname -m
+CMD echo -n "The architecture is " && uname -m
