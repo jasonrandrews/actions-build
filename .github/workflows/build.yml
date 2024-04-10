@@ -22,6 +22,8 @@ jobs:
           driver: cloud
           endpoint: "${{ secrets.DOCKER_ORG }}/arm-cloud-builder1"
           install: true
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: Build and push
         run: |
             docker buildx build --platform linux/arm64,linux/amd64 --tag $USER/cloud-build-test --push .
