@@ -1,0 +1,20 @@
+name: gh-image-build
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+      - name: Build and push
+        run: |
+            docker build --tag $USER/gh-build-test  .
+        env:
+           USER: ${{ secrets.DOCKER_USER }}
+
